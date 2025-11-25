@@ -89,25 +89,16 @@ class HealthPlannerAgent:
         """
         await self.hooks.on_agent_start("HealthPlannerAgent", ctx)
 
-        dynamic_instructions = self._get_dynamic_instructions(user_input)
+        # Enhanced dynamic instructions based on user input for tone
+        dynamic_instructions_tone = self._get_dynamic_instructions_tone(user_input)
 
-        # 🔹 Casual chat → direct Gemini response
-        if any(word in user_input.lower() for word in ["hello", "hi", "how are you", "thanks"]):
-            response_obj = await self.model.get_response(
-                system_instructions=dynamic_instructions,
-                input=user_input,
-                model_settings=ModelSettings(), # Changed to empty ModelSettings
-                tools=[],  # No tools used for casual chat
-                output_schema=None,
-                handoffs=[],
-                tracing=ModelTracing.DISABLED, # Use ModelTracing.DISABLED
-                previous_response_id=ctx.previous_response_id,
-            )
-            ctx.previous_response_id = response_obj.response_id
-            return response_obj.output[0].content[0].text
+        # --- Handle Medical Advice Queries First ---
+        medical_keywords = ["symptoms", "diagnose", "condition", "thyroid", "medical advice"]
+        if any(word in user_input.lower() for word in medical_keywords):
+            return await self._handle_medical_query(user_input, ctx, dynamic_instructions_tone)
 
-        # 🔹 Log water intake
-        elif any(word in user_input.lower() for word in ["log water", "drank", "water intake"]):
+        # --- Log water intake (specific intent) ---
+        if any(word in user_input.lower() for word in ["log water", "drank", "water intake"]):
             import re
             amount_ml = 0
             match = re.search(r'(\d+)\s*(ml|milliliters|cup|cups|oz|ounces)', user_input.lower())
@@ -132,29 +123,71 @@ class HealthPlannerAgent:
             else:
                 return {"ok": False, "response": "Please specify the amount of water to log (e.g., 'log 500ml water')."}
 
-        # 🔹 Structured goal parsing
-        ga = self.tools["goal_analyzer"]
-        await self.hooks.on_tool_start(ga.name, user_input)
-        parsed = await ga.run(user_input)
+        # --- Proactive Tool Calling / Structured Goal Parsing ---
+        # If user talks about goals, weight, exercise, etc., try to use goal_analyzer
+        if any(word in user_input.lower() for word in ["goal", "weight", "exercise", "gain", "lose", "plan"]):
+            ga = self.tools["goal_analyzer"]
+            await self.hooks.on_tool_start(ga.name, user_input)
+            parsed = await ga.run(user_input)
 
-        if not parsed.get("ok"):
-            # fallback: free text Gemini
-            response_obj = await self.model.get_response(
-                system_instructions=dynamic_instructions,
-                input=user_input,
-                model_settings=ModelSettings(), # Changed to empty ModelSettings
-                tools=[],  # No tools used for this fallback chat
-                output_schema=None,
-                handoffs=[],
-                tracing=ModelTracing.DISABLED, # Use ModelTracing.DISABLED
-                previous_response_id=ctx.previous_response_id,
-            )
-            ctx.previous_response_id = response_obj.response_id
-            return response_obj.output[0].content[0].text
+            if parsed.get("ok"):
+                ctx.goal = parsed["goal"]
+                # Then proceed to generate plans
+                return await self._generate_plans_and_response(ctx, dynamic_instructions_tone)
+            else:
+                # If goal_analyzer can't parse, try to respond generally or re-prompt
+                response_obj = await self.model.get_response(
+                    system_instructions=dynamic_instructions_tone + " User query couldn't be parsed by goal analyzer. Try to give a helpful and encouraging response related to health goals or offer to try again.",
+                    input=user_input,
+                    model_settings=ModelSettings(),
+                    tools=[],
+                    output_schema=None,
+                    handoffs=[],
+                    tracing=ModelTracing.DISABLED,
+                    previous_response_id=ctx.previous_response_id,
+                )
+                ctx.previous_response_id = response_obj.response_id
+                return {"ok": False, "response": response_obj.output[0].content[0].text}
 
-        # Store structured goal
-        ctx.goal = parsed["goal"]
 
+        # 🔹 Casual chat / General inquiries (fallback if no specific intent or tool usage)
+        response_obj = await self.model.get_response(
+            system_instructions=dynamic_instructions_tone + " You are a general health and wellness assistant. Provide helpful, encouraging, and informative responses within your expertise.",
+            input=user_input,
+            model_settings=ModelSettings(),
+            tools=[],
+            output_schema=None,
+            handoffs=[],
+            tracing=ModelTracing.DISABLED,
+            previous_response_id=ctx.previous_response_id,
+        )
+        ctx.previous_response_id = response_obj.response_id
+        return {"ok": True, "response": response_obj.output[0].content[0].text}
+
+    async def _handle_medical_query(self, user_input: str, ctx: UserSessionContext, dynamic_instructions: str) -> Dict[str, Any]:
+        """
+        Handles medical-related queries by providing general information and a disclaimer.
+        """
+        # A more specific instruction for medical queries
+        medical_instruction = "You are a health information assistant, not a medical professional. Provide general, publicly available information about the health topic requested, but *always* conclude by strongly advising the user to consult a qualified healthcare professional for diagnosis, treatment, and personalized medical advice. Do not diagnose or recommend treatments."
+
+        response_obj = await self.model.get_response(
+            system_instructions=dynamic_instructions + " " + medical_instruction,
+            input=user_input,
+            model_settings=ModelSettings(),
+            tools=[],
+            output_schema=None,
+            handoffs=[],
+            tracing=ModelTracing.DISABLED,
+            previous_response_id=ctx.previous_response_id,
+        )
+        ctx.previous_response_id = response_obj.response_id
+        return {"ok": True, "response": response_obj.output[0].content[0].text}
+
+    async def _generate_plans_and_response(self, ctx: UserSessionContext, dynamic_instructions: str) -> Dict[str, Any]:
+        """
+        Generates meal and workout plans based on the user's goal and returns a structured response.
+        """
         # 🔹 Meal plan
         if getattr(ctx, "diet_preferences", None):
             mp = self.tools["meal_planner"]
@@ -182,7 +215,7 @@ class HealthPlannerAgent:
             "handoff_logs": getattr(ctx, "handoff_logs", None),
         }
 
-    def _get_dynamic_instructions(self, user_input: str) -> str:
+    def _get_dynamic_instructions_tone(self, user_input: str) -> str:
         base_instruction = "You are a specialized AI assistant with expertise in health, biology, and medical queries. Your primary goal is to provide accurate, safe, and helpful information. Ensure your responses are concise, clear, and easy to understand, with a supportive and professional tone. Your maximum response length is 100 words."
         if "friendly" in user_input.lower():
             return base_instruction + " Also, maintain a very friendly and encouraging tone."
