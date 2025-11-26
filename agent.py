@@ -198,6 +198,15 @@ class HealthPlannerAgent:
         # 🔹 Casual chat / General inquiries (fallback if no specific intent or tool usage)
         # For general health queries (not diagnosis/emergency related, as filtered by pre-processor)
         response_obj = await self.model.get_response(
+            system_instructions=dynamic_instructions_tone + " You are a general health and wellness assistant. Provide helpful, encouraging, and informative responses within your expertise.",
+            input=user_input,
+            model_settings=ModelSettings(),
+            tools=[],
+            output_schema=None,
+            handoffs=[],
+            tracing=ModelTracing.DISABLED,
+            previous_response_id=ctx.previous_response_id,
+        )
         ctx.previous_response_id = response_obj.response_id
         
         response_text = "I'm sorry, I couldn't generate a response at this time. Please try again."
