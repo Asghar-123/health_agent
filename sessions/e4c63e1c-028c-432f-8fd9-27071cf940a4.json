@@ -1,0 +1,45 @@
+{
+    "name": "Guest",
+    "uid": "e4c63e1c-028c-432f-8fd9-27071cf940a4",
+    "goal": {
+        "name": "General Health",
+        "action": "maintain",
+        "quantity": null,
+        "unit": null,
+        "duration_value": null,
+        "duration_unit": null
+    },
+    "diet_preferences": null,
+    "workout_plan": null,
+    "meal_plan": null,
+    "injury_notes": null,
+    "handoff_logs": [],
+    "progress_logs": [],
+    "previous_response_id": null,
+    "chat_history": [
+        {
+            "role": "user",
+            "content": "give meal plan"
+        },
+        {
+            "role": "assistant",
+            "content": "Your current goal is General Health.\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment."
+        },
+        {
+            "role": "user",
+            "content": "yes"
+        },
+        {
+            "role": "assistant",
+            "content": "It looks like your current goal is General Health. How can I help you with this goal, or would you like to update your goal?\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment."
+        },
+        {
+            "role": "user",
+            "content": "give me awareness of it"
+        },
+        {
+            "role": "assistant",
+            "content": "I am a specialized AI assistant with expertise in health, biology, and medical queries. My primary goal is to provide accurate, safe, and helpful information regarding meal plans, workout routines, goal tracking, and general health inquiries. Please let me know how I can assist you!\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment.\n\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment."
+        }
+    ]
+}

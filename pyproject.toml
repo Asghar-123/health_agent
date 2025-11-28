@@ -5,6 +5,9 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "chainlit>=2.7.2",
+    "streamlit",
     "openai-agents>=0.2.11",
 ]
+
+[tool.setuptools]
+packages = ["agent_s", "guardrails", "tools"]

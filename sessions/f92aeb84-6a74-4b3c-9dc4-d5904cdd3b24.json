@@ -1,0 +1,22 @@
+{
+    "name": "Guest",
+    "uid": "f92aeb84-6a74-4b3c-9dc4-d5904cdd3b24",
+    "goal": null,
+    "diet_preferences": null,
+    "workout_plan": null,
+    "meal_plan": null,
+    "injury_notes": null,
+    "handoff_logs": [],
+    "progress_logs": [],
+    "previous_response_id": null,
+    "chat_history": [
+        {
+            "role": "user",
+            "content": "hi"
+        },
+        {
+            "role": "assistant",
+            "content": "Hello! I am a specialized AI assistant here to provide information on meal plans, workout routines, goal tracking, and general health inquiries. How can I help you today?\n\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment."
+        }
+    ]
+}

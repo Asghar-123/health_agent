@@ -1,0 +1,1 @@
+curl -H 'Content-Type: application/json' -d '{ "prompt": { "text": "Hello, Gemini!" } }' 'https://generativelanguage.googleapis.com/v1beta2/models/text-bison-001:generateText?key=AIzaSyBmAxnLOt3F0GHxDHSXsn7qWcuNfz1NJ5s'

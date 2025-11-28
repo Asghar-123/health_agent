@@ -11,6 +11,7 @@
 #     injury_notes: Optional[str] = None
 #     handoff_logs: List[str] = []
 #     progress_logs: List[Dict[str, str]] = []
+#context.py
 from typing import Optional, List, Dict
 from pydantic import BaseModel, Field
 import uuid
@@ -30,3 +31,5 @@ class UserSessionContext(BaseModel):
     # Logs with proper default factories (avoids shared mutable defaults)
     handoff_logs: List[str] = Field(default_factory=list)
     progress_logs: List[Dict[str, str]] = Field(default_factory=list)
+    previous_response_id: Optional[str] = None
+    chat_history: List[Dict[str, str]] = Field(default_factory=list)

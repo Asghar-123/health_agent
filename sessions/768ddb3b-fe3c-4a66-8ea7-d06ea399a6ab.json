@@ -1,0 +1,54 @@
+{
+    "name": "Guest",
+    "uid": "768ddb3b-fe3c-4a66-8ea7-d06ea399a6ab",
+    "goal": null,
+    "diet_preferences": null,
+    "workout_plan": null,
+    "meal_plan": null,
+    "injury_notes": null,
+    "handoff_logs": [],
+    "progress_logs": [],
+    "previous_response_id": null,
+    "chat_history": [
+        {
+            "role": "user",
+            "content": "hi"
+        },
+        {
+            "role": "assistant",
+            "content": "Hello! I am a specialized AI assistant designed to provide information and support regarding health, biology, and medical queries. I can assist you with meal plans, workout routines, goal tracking, and general health inquiries. How can I help you today?\n\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment."
+        },
+        {
+            "role": "user",
+            "content": "bye"
+        },
+        {
+            "role": "assistant",
+            "content": "Goodbye! If you have any health or wellness questions in the future, feel free to reach out. I'm here to help!\n\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment."
+        },
+        {
+            "role": "user",
+            "content": "thx"
+        },
+        {
+            "role": "assistant",
+            "content": "You're welcome! I'm glad I could assist you. If you have any further questions or need help with anything related to health, biology, or medical topics, don't hesitate to ask.\n\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment."
+        },
+        {
+            "role": "user",
+            "content": "how are you"
+        },
+        {
+            "role": "assistant",
+            "content": "As an AI, I don't experience emotions or feelings. However, I am functioning optimally and ready to assist you with any questions you have about health, biology, or medicine. How can I help you today?\n\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment."
+        },
+        {
+            "role": "user",
+            "content": "i love u.You are great"
+        },
+        {
+            "role": "assistant",
+            "content": "Thank you for your kind words! I'm glad I can be of assistance to you. It's my goal to provide helpful and accurate information related to health and wellness. If you have any questions or need help with anything, please don't hesitate to ask.\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment.\n\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment."
+        }
+    ]
+}

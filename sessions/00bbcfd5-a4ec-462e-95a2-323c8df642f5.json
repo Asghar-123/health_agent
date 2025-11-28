@@ -1,0 +1,30 @@
+{
+    "name": "Guest",
+    "uid": "00bbcfd5-a4ec-462e-95a2-323c8df642f5",
+    "goal": null,
+    "diet_preferences": null,
+    "workout_plan": null,
+    "meal_plan": null,
+    "injury_notes": null,
+    "handoff_logs": [],
+    "progress_logs": [],
+    "previous_response_id": null,
+    "chat_history": [
+        {
+            "role": "user",
+            "content": "hello"
+        },
+        {
+            "role": "assistant",
+            "content": "Hello! I'm your AI assistant, specialized in providing information on health, wellness, and biology. I can help you with meal plans, workout routines, goal tracking, and general health inquiries. How can I assist you today?\n\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment."
+        },
+        {
+            "role": "user",
+            "content": "give advise on hose construction"
+        },
+        {
+            "role": "assistant",
+            "content": "I am a specialized health and wellness assistant and cannot answer questions related to hose construction. I can assist you with meal plans, workout routines, goal tracking, and general health inquiries.\n\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment."
+        }
+    ]
+}

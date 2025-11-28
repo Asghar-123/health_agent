@@ -1,0 +1,30 @@
+{
+    "name": "Guest",
+    "uid": "ddc20734-8a51-46c6-97bc-bed6ebe2b58e",
+    "goal": null,
+    "diet_preferences": null,
+    "workout_plan": null,
+    "meal_plan": null,
+    "injury_notes": null,
+    "handoff_logs": [],
+    "progress_logs": [],
+    "previous_response_id": null,
+    "chat_history": [
+        {
+            "role": "user",
+            "content": "hello"
+        },
+        {
+            "role": "assistant",
+            "content": "Hello! I am a specialized AI assistant designed to provide information and support regarding health, wellness, and biology. I can assist you with meal plans, workout routines, goal tracking, and general health inquiries. How can I help you today?\n\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment."
+        },
+        {
+            "role": "user",
+            "content": "give advise on investing the money in bank"
+        },
+        {
+            "role": "assistant",
+            "content": "I am a specialized AI assistant designed to provide information and support regarding health, wellness, and biology. I cannot provide financial or investment advice.\n\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment."
+        }
+    ]
+}

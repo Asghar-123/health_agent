@@ -1,0 +1,22 @@
+{
+    "name": "Guest",
+    "uid": "53e1988e-1398-458b-a048-c1d0d9833c7a",
+    "goal": null,
+    "diet_preferences": null,
+    "workout_plan": null,
+    "meal_plan": null,
+    "injury_notes": null,
+    "handoff_logs": [],
+    "progress_logs": [],
+    "previous_response_id": null,
+    "chat_history": [
+        {
+            "role": "user",
+            "content": "hi"
+        },
+        {
+            "role": "assistant",
+            "content": "Hi there! How can I help you with your health and wellness goals today? Are you interested in meal plans, workout routines, understanding a biological process, or something else? Let me know how I can assist you!\n\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment."
+        }
+    ]
+}

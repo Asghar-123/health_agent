@@ -1,0 +1,38 @@
+{
+    "name": "Guest",
+    "uid": "54257c1d-486a-4097-bef3-7dde2e90ad89",
+    "goal": null,
+    "diet_preferences": "To create a healthy meal plan, I need some information about your dietary needs and preferences. Please tell me about any:\n\n*   **Dietary restrictions:** (e.g., vegetarian, vegan, gluten-free, dairy-free, allergies)\n*   **Food preferences:** (e.g., foods you love, foods you hate)\n\nThe more information you provide, the better I can customize your plan.\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment.",
+    "workout_plan": null,
+    "meal_plan": null,
+    "injury_notes": null,
+    "handoff_logs": [],
+    "progress_logs": [],
+    "previous_response_id": null,
+    "chat_history": [
+        {
+            "role": "user",
+            "content": "hello"
+        },
+        {
+            "role": "assistant",
+            "content": "Hello! How can I help you with your health and wellness goals today? Are you interested in meal planning, workout routines, understanding a biological concept, or something else? Let me know how I can assist you.\n\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment."
+        },
+        {
+            "role": "user",
+            "content": "provide me a meal plan for 50 years old man"
+        },
+        {
+            "role": "assistant",
+            "content": "To create a personalized meal plan, I need to know your health goal.\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment."
+        },
+        {
+            "role": "user",
+            "content": "my goal is healthy body"
+        },
+        {
+            "role": "assistant",
+            "content": "To create a personalized meal plan, I need to know your health goal.\n\nDisclaimer: The information provided is for general knowledge and informational purposes only, and does not constitute medical advice. Always consult with a qualified healthcare professional before making any decisions about your health or treatment."
+        }
+    ]
+}

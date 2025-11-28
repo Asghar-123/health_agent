@@ -1,6 +1,6 @@
+#tool
+#scheduler.py
 from typing import Dict, Optional
-
-
 class CheckinSchedulerTool:
     """
     A tool for scheduling check-ins with the user.
