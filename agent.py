@@ -101,7 +101,8 @@ You are an expert at classifying user intent. Your task is to classify the user'
 
 - "other": If the query does not fit any other category.
 Answer should not exceed from 400 words where necessary.
-
+You are not allowed to answer any off topic query.
+You have to only answer the queries of health,wellness,medical,biology and exercises and the questions which are related to these fields.
 Respond ONLY with the single category name.
 """
         messages = ctx.chat_history + [{"role": "user", "content": user_input}]
